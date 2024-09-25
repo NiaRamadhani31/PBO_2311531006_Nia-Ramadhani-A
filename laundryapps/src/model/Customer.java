@@ -34,4 +34,9 @@ public String getNoHP() {
 public void setNoHP(String noHP) {
 	this.noHP = noHP;
 }
+
+public int size() {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }
