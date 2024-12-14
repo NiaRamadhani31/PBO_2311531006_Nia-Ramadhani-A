@@ -39,4 +39,10 @@ public class TableCustomer extends AbstractTableModel {
     public String getColumnName(int column) {
         return columnNames[column];
     }
+    
+    public Customer getCostumerAt(int rowIndex) {
+
+        return customerList.get(rowIndex);
+
+    }
 }

@@ -6,7 +6,7 @@ import model.Service;
 
 public class TableService extends AbstractTableModel {
     private List<Service> serviceList;
-    private String[] columnNames = { "ID", "Jenis", "Satuan", "Status", "Harga"};
+    private String[] columnNames = { "ID", "Jenis", "Status", "Harga"};
 	
 
     public TableService(List<Service> serviceList) {
@@ -29,9 +29,8 @@ public class TableService extends AbstractTableModel {
         switch (columnIndex) {
             case 0: return service.getId();
             case 1: return service.getJenis();
-            case 2: return service.getSatuan();
-            case 3: return service.getStatus();
-            case 4: return service.getHarga();
+            case 2: return service.getStatus();
+            case 3: return service.getHarga();
             default: return null;
         }
     }
