@@ -124,7 +124,7 @@ public class OrderFrame extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblDataOrderan = new JLabel("Data Orderan");
-		lblDataOrderan.setFont(new Font("HP Simplified Jpan Light", Font.PLAIN, 16));
+		lblDataOrderan.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDataOrderan.setBounds(26, 25, 121, 25);
 		panel.add(lblDataOrderan);
 		
@@ -142,7 +142,7 @@ public class OrderFrame extends JFrame {
 				
 			}
 		});
-		btnBuat_Orderan.setFont(new Font("HP Simplified Jpan Light", Font.PLAIN, 11));
+		btnBuat_Orderan.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnBuat_Orderan.setBounds(26, 60, 99, 25);
 		panel.add(btnBuat_Orderan);
 		
@@ -159,7 +159,7 @@ public class OrderFrame extends JFrame {
 				}
 			}
 		});
-		btnHapus.setFont(new Font("HP Simplified Jpan Light", Font.PLAIN, 11));
+		btnHapus.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnHapus.setBounds(576, 60, 85, 25);
 		panel.add(btnHapus);
 		
@@ -198,7 +198,7 @@ public class OrderFrame extends JFrame {
 				}
 			}
 		});
-		btnEdit.setFont(new Font("HP Simplified Jpan Light", Font.PLAIN, 11));
+		btnEdit.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnEdit.setBounds(671, 60, 85, 25);
 		panel.add(btnEdit);
 		

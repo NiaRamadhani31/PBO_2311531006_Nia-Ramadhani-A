@@ -25,9 +25,38 @@ public class MainFrame extends JFrame {
 
         // Membuat tombol
         JButton penggunaButton = new JButton("Pengguna");
+        penggunaButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		UserFrame user = new UserFrame();
+        		user.loadTable();
+        		user.setVisible(true);
+        	}
+        });
         JButton layananButton = new JButton("Layanan");
+        layananButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ServicesFrame service = new ServicesFrame();
+        		service.loadTable();
+        		service.setVisible(true);
+        		
+        	}
+        });
         JButton pelangganButton = new JButton("Pelanggan");
+        pelangganButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		CustomerFrame cust = new CustomerFrame();
+        		cust.loadTable();
+        		cust.setVisible(true);
+        	}
+        });
         JButton pesananButton = new JButton("Pesanan");
+        pesananButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		OrderFrame order = new OrderFrame();
+        		order.loadTable();
+        		order.setVisible(true);
+        	}
+        });
         JButton profilButton = new JButton("Profil");
         JButton laporanButton = new JButton("Laporan");
         JButton keluarButton = new JButton("Keluar");
@@ -44,7 +73,7 @@ public class MainFrame extends JFrame {
         panel.add(new JLabel()); // Kosong untuk penempatan yang sesuai
 
         // Menambahkan panel ke frame
-        add(panel);
+        getContentPane().add(panel);
 
         // Menutup aplikasi saat window ditutup
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
