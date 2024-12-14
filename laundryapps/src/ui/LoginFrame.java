@@ -1,9 +1,14 @@
 package ui;
 
 import javax.swing.*;
+
+import error.ValidationException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.user;  // Import class user
+import service.LoginService;
+import util.ValidationUtil;
 
 public class LoginFrame {
 
@@ -63,22 +68,28 @@ public class LoginFrame {
         // Action listener untuk tombol Login
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Mendapatkan input username dan password
-                String username = userText.getText();
-                String password = new String(passwordText.getPassword());
-
-                // Memeriksa login menggunakan metode login dari class user
-                if (user.login(username, password)) {
-                    // Jika login berhasil, buka MainFrame (buat instance MainFrame jika sudah ada)
-                    JOptionPane.showMessageDialog(null, "Login Berhasil!"); 
-                    // Buat MainFrame atau action lain di sini
-                    MainFrame mainFrame = new MainFrame();  // Anggap MainFrame sudah dibuat
-                    mainFrame.setVisible(true);  // Tampilkan MainFrame
-                    frame.dispose();  // Menutup LoginFrame
-                } else {
-                    // Jika login gagal
-                    JOptionPane.showMessageDialog(null, "Gagal Login! Username atau Password salah.");
-                }
+            	String userValue = userText.getText();
+				String passValue = passwordText.getText();
+				
+				user user = new user(userValue, passValue);
+				
+				try {
+					ValidationUtil.validate(user);
+					LoginService loginService = new LoginService();
+					if(loginService.authenticate(user)) {
+						System.out.println("Login Successful");
+						new MainFrame().setVisible(true);
+						frame.dispose();
+					}else {
+						System.out.println("Invalid username or password");
+						JOptionPane.showMessageDialog(null, "Login Gagal");
+					}
+				}catch(ValidationException | NullPointerException exception) {
+					System.out.println("Data tidak valid : " + exception.getMessage());
+					JOptionPane.showMessageDialog(null, "Login Gagal: "+ exception.getMessage());
+				}finally {
+					System.out.println("Selalu di eksekusi");
+				}
             }
         });
     }

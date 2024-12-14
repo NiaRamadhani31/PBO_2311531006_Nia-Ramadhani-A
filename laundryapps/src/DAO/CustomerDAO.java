@@ -6,10 +6,8 @@ import model.Customer;
 
 
 public interface CustomerDAO {
-	void save(Customer customer);
-    List<Customer> show();
-    void update(Customer customer);
-    void delete(int id);
-	void delete(String id);
-
+	void save(Customer costumer);
+	public List<Customer> show();
+	public void delete (String id);
+	public void update (Customer costumer);
 }

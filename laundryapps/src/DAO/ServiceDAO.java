@@ -6,9 +6,7 @@ import model.Service;
 
 public interface ServiceDAO {
 	void save(Service service);
-    List<Service> show();
-    void update(Service service);
-    void delete(int id);
-	void delete(String id);
-
+	public List<Service> show();
+	public void delete (String id);
+	public void update (Service service);
 }

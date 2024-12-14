@@ -2,20 +2,14 @@ package model;
 
 public class user {
 String id,  nama, username, password;
-public static boolean login(String username, String password) {
-	boolean isLogin = false;
-	user user = new user();
-	user.setId("1");
-	user.setNama("nia");
-	user.setUsername("nia");
-	user.setPassword("12345");
 
-	if(user.getUsername().equalsIgnoreCase(username.trim())
-			&& user.getPassword().equals(password)) {
-		isLogin = true;
-	} else {isLogin=false;}
-	
-	return isLogin;
+public user(String uname, String pass) {
+	this.username = uname;
+	this.password = pass;
+}
+
+public user() {
+	// TODO Auto-generated constructor stub
 }
 
 

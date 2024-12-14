@@ -1,7 +1,7 @@
 package model;
 
 public class Service {
-	String id, jenis, satuan, status;
+	String id, jenis, status;
 	int harga;
 	public String getId() {
 		return id;
@@ -15,12 +15,6 @@ public class Service {
 	public void setJenis(String jenis) {
 		this.jenis = jenis;
 	}
-	public String getSatuan() {
-		return satuan;
-	}
-	public void setSatuan(String satuan) {
-		this.satuan = satuan;
-	}
 	public String getStatus() {
 		return status;
 	}
@@ -33,8 +27,8 @@ public class Service {
 	public void setHarga(int harga) {
 		this.harga = harga;
 	}
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
+	
+	
+	
 }

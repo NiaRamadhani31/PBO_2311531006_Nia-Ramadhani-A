@@ -25,7 +25,6 @@ public class ServicesFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTextField txtJenis;
-    private JTextField txtSatuan;
     private JTextField txtStatus;
     private JTextField txtHarga;
     private JTable table;
@@ -47,7 +46,6 @@ public class ServicesFrame extends JFrame {
 
     public void reset() {
         txtJenis.setText("");
-        txtSatuan.setText("");
         txtStatus.setText("");
         txtHarga.setText("");
         selectedId = null;
@@ -61,7 +59,7 @@ public class ServicesFrame extends JFrame {
 
     public ServicesFrame() {
         serviceRepo = new ServiceRepo();  // Initialize the repository
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,30 +76,21 @@ public class ServicesFrame extends JFrame {
         contentPane.add(txtJenis);
         txtJenis.setColumns(10);
 
-        JLabel lblSatuan = new JLabel("Satuan");
-        lblSatuan.setBounds(10, 60, 80, 25);
-        contentPane.add(lblSatuan);
-
-        txtSatuan = new JTextField();
-        txtSatuan.setBounds(100, 60, 200, 25);
-        contentPane.add(txtSatuan);
-        txtSatuan.setColumns(10);
-
         JLabel lblStatus = new JLabel("Status");
-        lblStatus.setBounds(10, 100, 80, 25);
+        lblStatus.setBounds(10, 55, 80, 25);
         contentPane.add(lblStatus);
 
         txtStatus = new JTextField();
-        txtStatus.setBounds(100, 100, 200, 25);
+        txtStatus.setBounds(100, 55, 200, 25);
         contentPane.add(txtStatus);
         txtStatus.setColumns(10);
 
         JLabel lblHarga = new JLabel("Harga");
-        lblHarga.setBounds(10, 140, 80, 25);
+        lblHarga.setBounds(10, 95, 80, 25);
         contentPane.add(lblHarga);
 
         txtHarga = new JTextField();
-        txtHarga.setBounds(100, 140, 200, 25);
+        txtHarga.setBounds(100, 95, 200, 25);
         contentPane.add(txtHarga);
         txtHarga.setColumns(10);
 
@@ -111,7 +100,6 @@ public class ServicesFrame extends JFrame {
                 if (validateInput()) {
                     Service service = new Service();
                     service.setJenis(txtJenis.getText());
-                    service.setSatuan(txtSatuan.getText());
                     service.setStatus(txtStatus.getText());
                     service.setHarga(Integer.parseInt(txtHarga.getText()));
                     serviceRepo.save(service);
@@ -131,7 +119,6 @@ public class ServicesFrame extends JFrame {
                     Service service = new Service();
                     service.setId(selectedId);
                     service.setJenis(txtJenis.getText());
-                    service.setSatuan(txtSatuan.getText());
                     service.setStatus(txtStatus.getText());
                     service.setHarga(Integer.parseInt(txtHarga.getText()));
                     serviceRepo.update(service);
@@ -189,7 +176,6 @@ public class ServicesFrame extends JFrame {
                 if (row != -1) {
                     selectedId = table.getModel().getValueAt(row, 0).toString();
                     txtJenis.setText(table.getModel().getValueAt(row, 1).toString());
-                    txtSatuan.setText(table.getModel().getValueAt(row, 2).toString());
                     txtStatus.setText(table.getModel().getValueAt(row, 3).toString());
                     txtHarga.setText(table.getModel().getValueAt(row, 4).toString());
                 }
@@ -202,10 +188,6 @@ public class ServicesFrame extends JFrame {
     private boolean validateInput() {
         if (txtJenis.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Jenis cannot be empty!");
-            return false;
-        }
-        if (txtSatuan.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Satuan cannot be empty!");
             return false;
         }
         if (txtStatus.getText().isEmpty()) {

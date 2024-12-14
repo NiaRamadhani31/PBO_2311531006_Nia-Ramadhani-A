@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 
 import DAO.CustomerRepo;
 import model.Customer;
+import model.CustomerBuilder;
 import table.TableCustomer;
 
 public class CustomerFrame extends JFrame {
@@ -59,7 +60,7 @@ public class CustomerFrame extends JFrame {
 
     public CustomerFrame() {
         customerRepo = new CustomerRepo(); // Corrected variable initialization
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 500, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,11 +99,12 @@ public class CustomerFrame extends JFrame {
         btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (validateInput()) {
-                    Customer customer = new Customer(); // Changed to 'Customers'
-                    customer.setNama(txtName.getText());
-                    customer.setAlamat(txtAlamat.getText()); // Changed field to 'Alamat'
-                    customer.setNoHP(txtNoHP.getText()); // Changed field to 'NoHP'
-                    customerRepo.save(customer);
+                	Customer customer = new CustomerBuilder()
+                			.setNama(txtName.getText())
+                			.setAlamat(txtAlamat.getText())
+                			.setNohp(txtNoHP.getText())
+                			.build();
+                	customerRepo.save(customer);
                     reset();
                     loadTable();
                     JOptionPane.showMessageDialog(null, "Customer saved successfully!");
@@ -116,12 +118,13 @@ public class CustomerFrame extends JFrame {
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (selectedId != null && validateInput()) {
-                    Customer customer = new Customer(); // Changed to 'Customers'
-                    customer.setId(selectedId);
-                    customer.setNama(txtName.getText());
-                    customer.setAlamat(txtAlamat.getText()); // Changed field to 'Alamat'
-                    customer.setNoHP(txtNoHP.getText()); // Changed field to 'NoHP'
-                    customerRepo.update(customer);
+                	Customer customer = new CustomerBuilder()
+                			.setId(selectedId)
+                			.setNama(txtName.getText())
+                			.setAlamat(txtAlamat.getText())
+                			.setNohp(txtNoHP.getText())
+                			.build();
+                	customerRepo.update(customer);
                     reset();
                     loadTable();
                     JOptionPane.showMessageDialog(null, "Customer updated successfully!");
@@ -176,8 +179,8 @@ public class CustomerFrame extends JFrame {
                 if (row != -1) {
                     selectedId = table.getModel().getValueAt(row, 0).toString();
                     txtName.setText(table.getModel().getValueAt(row, 1).toString());
-                    txtAlamat.setText(table.getModel().getValueAt(row, 2).toString()); // 'Alamat' instead of 'Username'
-                    txtNoHP.setText(table.getModel().getValueAt(row, 3).toString()); // 'NoHP' instead of 'Password'
+                    txtAlamat.setText(table.getModel().getValueAt(row, 2).toString()); 
+                    txtNoHP.setText(table.getModel().getValueAt(row, 3).toString()); 
                 }
             }
         });
